@@ -1,0 +1,9 @@
+RewriteEngine on
+RewriteRule ^$ public/index.php?controller=User&method=login [L,NC,QSA]
+RewriteRule ^login$ public/index.php?controller=User&method=login [L,NC,QSA]
+RewriteRule ^feed$ public/index.php?controller=Binsta&method=feed [L,NC,QSA]
+RewriteRule ^post$ public/index.php?controller=Binsta&method=post [L,NC,QSA]
+RewriteRule ^settings$ public/index.php?controller=Binsta&method=settings [L,NC,QSA]
+RewriteRule ^profile/(.+)[/]?$ public/index.php?controller=Binsta&method=profile [L,NC,QSA]
+RewriteRule ^register$ public/index.php?controller=User&method=register [L,NC,QSA]
+RewriteRule ^logout$ public/logout.php [L,NC,QSA]

@@ -1,0 +1,16 @@
+{% extends "layouts/app.twig" %}
+
+{% block title %}
+	404
+{% endblock %}
+
+{% block controller %}
+	Error
+{% endblock %}
+
+{% block body %}
+	<div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+		<strong>{{ errorNumber }}</strong><br>
+		{{ errorMessage }}
+	</div>
+{% endblock %}

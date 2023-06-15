@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% block head %}
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+			<script src="https://kit.fontawesome.com/4672461ce1.js" crossorigin="anonymous"></script>
+
+			<link rel="stylesheet" href="/css/style.css">
+			<title>
+				{% block title %}{% endblock %}
+				- 	Binsta
+			</title>
+		{% endblock %}
+	</head>
+	<body class="position-relative" style="background: #f8f4f4; min-height: 100vh;">
+		<nav class="shadow-sm navbar navbar-expand-lg bg-white">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/">Binsta</a>
+				<div class="mx-auto">
+					<form action="" method="post">
+						<div class="input-group">
+							<i id="input-icon" class="fa-solid fa-magnifying-glass"></i>
+							<input id="icon-input" name="search_name" type="text" class="form-control shadow-none rounded" placeholder="Search"/>
+							<input name="search_profile" type="submit" hidden/>
+						</div>
+					</form>
+				</div>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobile" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse flex-grow-0 mt-3 mt-lg-0 justify-content-end" id="mobile">
+					<ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+						{% if user is defined %}
+							<li class="nav-item">
+								<a style="margin-top: 1px;" href="/" class="nav-link text-dark active">
+									<i class="fa-solid fa-house fs-5"></i>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="/post" class="nav-link text-dark active">
+									<i class="fa-regular fa-square-plus fs-4"></i>
+								</a>
+							</li>
+							<li class="nav-item dropdown">
+
+								<a style="margin-top: -3px;" href="" class="nav-link dropdown-toggle text-dark rounded-circle" id="navbarDropdown" data-bs-toggle="dropdown">
+									<img style="width: 32px; height: 32px;" src="{{ user.image }}" class="rounded-circle float-start" alt="user_logo">
+								</a>
+								<div style="left: -105px;" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="/profile/{{ user.username }}">Profile</a>
+									<a class="dropdown-item" href="/settings">Settings</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/logout">Log out</a>
+								</div>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<a class="nav-link text-white active btn btn-primary px-3" href="login">Login</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-dark active" href="register">Register</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container-sm mt-3"> 
+			{% if error is defined %}
+				<div class="col-12 col-lg-10 mx-auto">
+				<div class="alert alert-danger alert-dismissible fade show mt-4 mb-0 px-3 py-0" role="alert">
+					<div class="d-flex gap-4 align-items-center mt-3">
+						<i class="fa-solid fa-triangle-exclamation fs-1 mb-3"></i>
+						<p>
+							<strong>Error!</strong><br>{{ error }}</p>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				</div>
+				</div>
+			{% endif %}
+
+	{% block body %}{% endblock %}
+			</div>
+			<footer class="position-relative w-100 bottom-0 p-3 bg-dark text-center text-white mt-5">
+				Binsta - Gemaakt door Daryl Färber
+			</footer>
+			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+			<link rel="stylesheet" href="/highlight/styles/base16/material.min.css">
+            <script src="/highlight/highlight.min.js"></script>
+            <script>hljs.highlightAll();if ( window.history.replaceState ) {
+				window.history.replaceState( null, null, window.location.href );
+			  }</script>
+		</body>
+	</html>

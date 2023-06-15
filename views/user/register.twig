@@ -1,0 +1,35 @@
+{% extends "layouts/app.twig" %}
+
+
+{% block title %}
+	Sign up
+{% endblock %}
+
+{% block body %}
+	<div class="card col-12 col-lg-6 mx-auto p-4 mt-4 shadow-sm border border-0">
+		<form action="" method="post">
+			<h1 class="text-center mb-4">Sign up</h1>
+			<div class="input-group">
+				<i id="input-icon" class="fa-solid fa-user"></i>
+				<input type="text" id="icon-input" name="new_user_username" class="form-control shadow-none rounded" placeholder="Username"/>
+			</div>
+			<div class="input-group mt-3">
+				<i id="input-icon" class="fa-solid fa-lock"></i>
+				<input type="password" id="icon-input" name="new_user_password" class="form-control shadow-none rounded" placeholder="Password"/>
+			</div>
+			<div class="input-group mt-3">
+				<i id="input-icon" class="fa-solid fa-lock"></i>
+				<input type="password" id="icon-input" name="new_user_password_repeat" class="form-control shadow-none rounded" placeholder="Confirm password"/>
+			</div>
+			<div class="form-check my-3">
+				<input class="form-check-input shadow-none" type="checkbox" value="" id="logindetails">
+				<label class="form-check-label" for="logindetails">
+					Do you accept our terms and conditions	
+				</label>
+			</div>
+			<button type="submit" name="user_register" class="btn btn-primary w-100">Create your account</button>
+		</form>
+		<hr>
+		<p class="text-muted">Already have an account? <a href="./login">Sign in</a></p>
+	</div>
+{% endblock %}

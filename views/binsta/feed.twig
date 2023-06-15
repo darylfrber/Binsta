@@ -1,0 +1,103 @@
+{% extends "layouts/app.twig" %}
+
+
+{% block title %}
+	Feed
+{% endblock %}
+
+{% block body %}
+	{% for post in posts %}
+		<div class="card col-12 col-lg-7 mx-auto p-0 mt-4 shadow-sm border border-0">
+			<div class="d-flex align-items-center justify-content-between mx-3 my-2 gap-2">
+				<a class="d-flex gap-2 align-items-center text-decoration-none text-black" href="/profile/{{ post.__get('user').username }}">
+					<img style="width: 32px; height: 32px;" src="{{ post.__get('user').image }}" class="rounded-circle float-start" alt="...">
+					<b>{{ post.__get('user').username }}</b>
+				</a>
+				<span class="text-muted justify-content-center">{{ post.language }}</span>
+			</div>
+			<pre><code class="p-3">{{ post.code }}</code></pre>
+			<div
+				class="d-flex align-items-center justify-content-between mx-3">
+				<!-- Likes -->
+				<div class="d-flex align-items-center gap-2">
+					<form action="" method="post">
+						{% set liked = false %}
+						{% for like in likes %}
+							{% if post.id == like.post_id %}
+								<input type="text" name="unlike_post_id" value="{{ post.id }}" hidden/>
+								<input type="text" name="unlike_like_id" value="{{ like.id }}" hidden/>
+								<button type="submit" name="unlike_post" class="fa-solid fa-heart fs-5 text-danger"></button>
+								{% set liked = true %}
+							{% endif %}
+						{% endfor %}
+
+						{% if liked == false %}
+							<input type="text" name="like_post_id" value="{{ post.id }}" hidden/>
+							<button type="submit" name="like_post" class="fa-regular fa-heart fs-5"></button>
+						{% endif %}
+					</form>
+					<div>
+						<b>{{ post.likes }}</b>
+						likes
+					</div>
+				</div>
+				<!-- End likes -->
+				<button type="button" class="text-muted text-decoration-none" data-bs-toggle="modal" data-bs-target="#comments-{{ post.id }}">
+					Comments
+				</button>
+				<!-- Comments -->
+				<div class="modal fade" id="comments-{{ post.id }}" tabindex="-1" aria-labelledby="comments-{{ post.id }}" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="comments-{{ post.id }}">Comments</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body my-auto mt-3">
+								{% for comment in comments %}
+									{% if post.id == comment.post_id %}
+										<div>
+											<a class="text-decoration-none text-black" href="/profile/{{ post.__get('user').username }}">
+												<b>{{ comment.__get('user').username }}:</b>
+											</a>
+											<span class="text-muted">{{ comment.comment }}</span>
+										</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+							<hr class="text-muted">
+							<div class="modal-fooster">
+								<form action="" method="post">
+									<div style="margin-bottom: 10px; margin-top: -6px;" class="d-flex gap-1 mx-3 justify-content-between">
+										<input class="nothing w-100" name="comment_comment" type="text" placeholder="Post a comment..."/>
+										<input type="text" name="comment_post_id" value="{{ post.id }}" hidden/>
+										<button type="submit" name="comment_post" class="text-primary text-decoration-none" href="/profile/{{ post.__get('user').username }}">
+											Post
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end comments -->
+			</div>
+			<div style="height: 20px;" class="d-flex gap-1 mx-3">
+				<a class="text-decoration-none text-black" href="/profile/{{ post.__get('user').username }}">
+					<b>{{ post.__get('user').username }}</b>
+				</a>
+				<p>{{ post.description }}</p>
+			</div>
+			<hr class="text-muted">
+			<form action="" method="post">
+				<div style="margin-bottom: 10px; margin-top: -6px;" class="d-flex gap-1 mx-3 justify-content-between">
+					<input class="nothing w-100" name="comment_comment" type="text" placeholder="Post a comment..."/>
+					<input type="text" name="comment_post_id" value="{{ post.id }}" hidden/>
+					<button type="submit" name="comment_post" class="text-primary text-decoration-none" href="/profile/{{ post.__get('user').username }}">
+						Post
+					</button>
+				</div>
+			</form>
+		</div>
+	{% endfor %}
+{% endblock %}

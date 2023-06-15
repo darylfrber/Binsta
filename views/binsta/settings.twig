@@ -1,0 +1,74 @@
+{% extends "layouts/app.twig" %}
+
+
+{% block title %}
+	Settings
+{% endblock %}
+
+{% block body %}
+	<div class="d-flex row align-items-start mt-4 justify-content-center">
+		<div class="col-12 col-lg-3">
+			<div class="list-group shadow-sm border border-0">
+				<button type="button" id="settings-profile-tab" data-bs-toggle="pill" data-bs-target="#settings-profile" type="button" role="tab" aria-controls="settings-profile" aria-selected="true" class="list-group-item list-group-item-action active" aria-current="true">
+					Change profile
+				</button>
+				<button type="button" id="settings-picture-tab" data-bs-toggle="pill" data-bs-target="#settings-picture" type="button" role="tab" aria-controls="settings-picture" aria-selected="false" class="list-group-item list-group-item-action">
+					Change picture
+				</button>
+				<button type="button" id="settings-password-tab" data-bs-toggle="pill" data-bs-target="#settings-password" type="button" role="tab" aria-controls="settings-password" aria-selected="false" class="list-group-item list-group-item-action">
+					Change password
+				</button>
+			</div>
+		</div>
+		<div class="col-12 col-lg-7">
+			<div class="card shadow-sm border border-0 p-3 tab-content" id="v-pills-tabContent">
+				<div class="tab-pane fade show active" id="settings-profile" role="tabpanel" aria-labelledby="settings-profile-tab" tabindex="0">
+					<form action="" method="post">
+						Change username<br>
+						<div class="input-group mb-3">
+							<i id="input-icon" class="fa-solid fa-user"></i>
+							<input type="text" id="icon-input" name="user_username" class="form-control shadow-none rounded" value="{{ user.username }}" placeholder="Username"/>
+						</div>
+						Change biography
+						<br>
+						<div class="input-group mb-3">
+							<i id="input-icon" class="fa-solid fa-pen"></i>
+							<input type="text" id="icon-input" name="user_biography" class="form-control shadow-none rounded" value="{{ user.biography }}" placeholder="Biography"/>
+						</div>
+						<button type="submit" name="settings_profile" class="btn btn-primary w-100">Save profile</button>
+					</form>
+				</div>
+				<div class="tab-pane fade" id="settings-picture" role="tabpanel" aria-labelledby="settings-picture-tab" tabindex="0">
+					<form action="" method="post" enctype="multipart/form-data">
+						<label class="form-label" for="customFile">Upload profile picture</label>
+						<input type="file" name="user_picture" accept="image/*" class="form-control" id="customFile"/>
+						<button type="submit" name="settings_picture" class="mt-3 btn btn-primary w-100">Upload</button>
+					</form>
+				</div>
+				<div class="tab-pane fade" id="settings-password" role="tabpanel" aria-labelledby="settings-password-tab" tabindex="0">
+					<form action="" method="post">
+						Current password<br>
+						<div class="input-group mb-3">
+							<i id="input-icon" class="fa-solid fa-lock"></i>
+							<input type="text" id="icon-input" name="user_current_password" class="form-control shadow-none rounded" placeholder="Current password"/>
+						</div>
+						New password
+						<br>
+						<div class="input-group mb-3">
+							<i id="input-icon" class="fa-solid fa-lock"></i>
+							<input type="text" id="icon-input" name="user_new_password" class="form-control shadow-none rounded" placeholder="New password"/>
+						</div>
+						Confirm new password
+						<br>
+						<div class="input-group mb-3">
+							<i id="input-icon" class="fa-solid fa-lock"></i>
+							<input type="text" id="icon-input" name="user_confirm_new_password" class="form-control shadow-none rounded" placeholder="Confirm new password"/>
+						</div>
+						<span class="text-muted">You need to log back in after changing your password.</span>
+						<button type="submit" name="settings_password" class="mt-1 btn btn-primary w-100">Save password</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
