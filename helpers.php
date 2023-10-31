@@ -3,7 +3,7 @@
 $host = '127.0.0.1';
 $db   = 'binsta';
 $user = 'root';
-$pass = 'DarylSQL123!';
+$pass = 'DarylSQL1232020!';
 
 $dsn = "mysql:host=$host;dbname=$db";
 use RedBeanPHP\R as R;
